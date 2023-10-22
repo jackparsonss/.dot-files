@@ -6,6 +6,7 @@ ln -s ~/.dotfiles/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.ideavimrc ~/.ideavimrc
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/.oh-my-zsh ~/.oh-my-zsh
 ln -s ~/.dotfiles/.bash_profile ~/.bash_profile
 
 os_name=$(uname -s)
