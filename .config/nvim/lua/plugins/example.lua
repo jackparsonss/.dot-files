@@ -15,7 +15,6 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        pyright = {},
         clangd = {
           cmd = { "clangd", "--background-index" }, -- Specify the command and any additional flags
           filetypes = { "c", "cpp" }, -- Set the filetypes for which the LSP server should be enabled
@@ -58,7 +57,6 @@ return {
         "markdown_inline",
         "python",
         "query",
-        "regex",
         "tsx",
         "typescript",
         "vim",
@@ -67,25 +65,9 @@ return {
     },
   },
 
-  -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
-  -- would overwrite `ensure_installed` with the new value.
-  -- If you'd rather extend the default config, use the code below instead:
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      -- add tsx and treesitter
-      vim.list_extend(opts.ensure_installed, {
-        "tsx",
-        "typescript",
-      })
-    end,
-  },
-
   -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
-
-
-  -- Use <tab> for completion and snippets (supertab)
+     -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
@@ -120,6 +102,15 @@ return {
             luasnip.expand_or_jump()
           elseif has_words_before() then
             cmp.complete()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
           else
             fallback()
           end
