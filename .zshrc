@@ -38,6 +38,8 @@ alias repos="cd /Users/jackparsons/Storage/Repositories"
 alias f='cd "$(find . -maxdepth 10 -type d | grep -v -e '.git' -e 'node_modules' -e 'Pods' | fzf)"'
 alias ff='nvim "$(find . -maxdepth 10 | grep -v -e '.git' -e 'node_modules' -e 'Pods' | fzf)"'
 
+alias vi='nvim'
+
 # starship
 eval "$(starship init zsh)"
 
