@@ -23,7 +23,6 @@ return {
               or require("lspconfig").util.root_pattern("CMakeLists.txt", "compile_flags.txt", ".git")(fname)
               or require("lspconfig").util.root_pattern("compile_flags.txt")(fname)
           end,
-          capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()), -- Update capabilities for auto-completion
           settings = {
             clangd = {
               path = "/usr/bin/clangd", -- Path to the clangd executable
